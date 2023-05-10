@@ -33,21 +33,27 @@ public class Busca {
     @Given("^que abri o Google$")
     public void queAbriOGoogle() {
         driver.get("https://www.google.com.br");
-        System.out.println("Passo 1");
+        System.out.println("Passo 1 - Abriu o site");
     }
     @When("^digito \"([^\"]*)\"$")
     public void digito(String termo){
         driver.findElement(By.name("q")).sendKeys(termo);
-        System.out.println("Passo 2");
+        System.out.println("Passo 2 - Digitou o termo de pesquisa");
     }
     @And("^aperto a tecla Enter$")
     public void apertoATeclaEnter() {
         driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
-        System.out.println("Passo 3");
+        System.out.println("Passo 3 - Apertou Enter");
     }
     @Then("^exibe os resultados para \"([^\"]*)\"$")
     public void exibeOsResultadosPara(String termo) {
         assertEquals(driver.getTitle(), termo + " - Pesquisa Google");
-        System.out.println("Passo 4");
+        System.out.println("Passo 4 - Comparou o nome da aba");
+    }
+
+    @And("^clico na lupa$")
+    public void clicoNaLupa() {
+        driver.findElement(By.name("btnK")).click();
+        System.out.println("Passo 3.1 - Clicou em pesquisar");
     }
 }
